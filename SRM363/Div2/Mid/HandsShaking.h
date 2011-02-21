@@ -12,22 +12,21 @@ using namespace std;
 #define FORIT(i,c) for (typeof((c).begin()) i = (c).begin(); i != (c).end(); i++)
 #define ISEQ(c) (c).begin(), (c).end()
 
-class OneDigitDifference {
+class HandsShaking {
 
-	public: int getSmallest(int N) {
-		if(N < 10){
-			if(N == 0)return 1;
-			else return 0;
+	public: long long countPerfect(int n) {
+
+		long long num[100];
+		num[0] = 1;
+
+		for(int i=1; i<=100; i++){
+			long long n = 0;
+			for(int j=0; j< i; j++){
+				n += num[i-j-1] * num[j];
+			}
+			num[i] = n;
 		}
-
-		int sum = 0;
-		int i = 1;
-
-		while(N > 10){
-			sum += (N % 10) * i;
-			i *= 10;
-			N = N / 10;
-		}
-		return int(sum);
+		return num[n/2];
 	}
+
 };
